@@ -1,5 +1,27 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Redesigned the conversation view to read like a web messenger: borderless
+  bubbles sized to their content, consecutive messages from the same sender on
+  the same day grouped into one block, and per-message actions moved into a
+  floating bar that only appears while the pointer is on the bubble.
+- Sidebar account filters became a single horizontal chip row, the unread
+  filter an icon toggle with a badge, and chat rows a fixed 64 px.
+- The composer is a pill with no resting border, and the mic and send buttons
+  swap so there is one primary action.
+- The conversation header gained a size hierarchy and a presence dot, and day
+  separators and the jump-to-latest button moved to the higher surface
+  container.
+
+### Notes
+
+- The new view uses the DMS 2.0 widget set (`qs.DCommon.Widgets`:
+  `DFilterChips`, `DSearchField`, `DListItem`, `DBadge`, `DFab`), so it
+  requires `requires_dms >=2.0.0`. The previous view is one revert away.
+
 ## 0.6.1 — 2026-10-29
 
 ### Fixed
