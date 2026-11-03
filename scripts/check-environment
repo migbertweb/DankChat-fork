@@ -33,8 +33,13 @@ def check_widgets(source):
 def main():
     configured = os.environ.get('DANKCHAT_DMS_SOURCE')
     runtime = Path(os.environ.get('XDG_RUNTIME_DIR', f'/run/user/{os.getuid()}'))
+    # DMS 1.x materializes the shell under danklinux-shell/; 2.0 uses dms-shell/.
+    # Looking at only the first name makes scripts/setup abort on 2.0 before it
+    # installs anything, so both are globbed and the newest tree wins.
     candidates = [Path(configured)] if configured else sorted(
-        (runtime / 'danklinux-shell').glob('*/shell.qml'), key=lambda p: p.stat().st_mtime, reverse=True)
+        [p for root in ('danklinux-shell', 'dms-shell')
+         for p in (runtime / root).glob('*/shell.qml')],
+        key=lambda p: p.stat().st_mtime, reverse=True)
     sources = [p.parent if p.name == 'shell.qml' else p for p in candidates]
     sources += [] if configured else [Path('/usr/share/quickshell/dms')]
     source = next((p for p in sources if (p / 'Widgets').is_dir()), None)
