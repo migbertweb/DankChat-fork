@@ -10,7 +10,7 @@
   "components": {"widget": "./BarWidget.qml", "daemon": "./Service.qml"},
   "settings": "./Settings.qml",
   "capabilities": ["dankbar-widget", "daemon", "ipc"],
-  "requires_dms": ">=1.6.1",
+  "requires_dms": ">=2.0.0",
   "dependencies": ["python3"],
   "permissions": ["settings_read", "settings_write", "process", "network"]
 }
