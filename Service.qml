@@ -969,6 +969,6 @@ PluginComponent {
             return JSON.stringify({status: windowView.status, width: windowView.width, height: windowView.height, loaded: !!windowView.item, error: component.errorString(), mediaErrors: ["MediaPreview.qml", "MediaPlayerView.qml"].map(file => Qt.createComponent(Qt.resolvedUrl(file) + "?revision=" + root.viewRevision).errorString())});
         }
         function diagnostics(): string { return JSON.stringify(root.diagnosticRequests); }
-        function status(): string { return JSON.stringify({demo: root.demo, window: app.visible, dropdown: popout.shouldBeVisible, bridge: bridge.running, pending: Object.keys(root.pending).length, telegram: !!root.statuses.telegram?.authorized, whatsapp: !!root.statuses.whatsapp?.authorized, telegramAuthState: root.statuses.telegram?.authState || "", accounts: root.accounts.length, readSync: {telegram: root.readReceipts, whatsapp: root.whatsappReadState}}); }
+        function status(): string { return JSON.stringify({demo: root.demo, window: app.visible, dropdown: popout.shouldBeVisible, bridge: bridge.running, pending: Object.keys(root.pending).length, telegram: !!root.statuses.telegram?.authorized, whatsapp: !!root.statuses.whatsapp?.authorized, telegramAuthState: root.statuses.telegram?.authState || "", accounts: root.accounts.length, syncFailures: root.syncFailures, reconnecting: root.reconnecting, accountStatuses: root.accountStatuses, readSync: {telegram: root.readReceipts, whatsapp: root.whatsappReadState}}); }
     }
 }
